@@ -1,0 +1,3 @@
+TMG.Square = function(spriteKey){
+	
+}
