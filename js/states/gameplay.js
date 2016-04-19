@@ -1,6 +1,6 @@
 TMG.states.gameplayState = function(){
 	var state = new Phaser.State();
-	var addPointTween, subPointTween, shakeRightTween, shakeLeftTween, time;
+	var addPointTween, subPointTween, shakeRightTween, shakeLeftTween, time, SIZE = 3, NUM_SQUARES = 9;
 
 	state.counter = function(){
 		if(time > 0)
@@ -10,20 +10,26 @@ TMG.states.gameplayState = function(){
 	state.populateBoard = function(){
 		var squareId = 0,
 		squareY = [
-			this.game.tmgPosition.getY(this.boardBounds, 0.125),
-			this.game.tmgPosition.getY(this.boardBounds, 0.375),
-			this.game.tmgPosition.getY(this.boardBounds, 0.625),
-			this.game.tmgPosition.getY(this.boardBounds, 0.875)
+			// this.game.tmgPosition.getY(this.boardBounds, 0.125),
+			// this.game.tmgPosition.getY(this.boardBounds, 0.375),
+			// this.game.tmgPosition.getY(this.boardBounds, 0.625),
+			// this.game.tmgPosition.getY(this.boardBounds, 0.875)
+			this.game.tmgPosition.getY(this.boardBounds, 0.25),
+			this.game.tmgPosition.getY(this.boardBounds, 0.50),
+			this.game.tmgPosition.getY(this.boardBounds, 0.75)
 		],
 		squareX = [
-			this.game.tmgPosition.getX(this.boardBounds, 0.125),
-			this.game.tmgPosition.getX(this.boardBounds, 0.375),
-			this.game.tmgPosition.getX(this.boardBounds, 0.625),
-			this.game.tmgPosition.getX(this.boardBounds, 0.875)
+			// this.game.tmgPosition.getX(this.boardBounds, 0.125),
+			// this.game.tmgPosition.getX(this.boardBounds, 0.375),
+			// this.game.tmgPosition.getX(this.boardBounds, 0.625),
+			// this.game.tmgPosition.getX(this.boardBounds, 0.875)
+			this.game.tmgPosition.getX(this.boardBounds, 0.25),
+			this.game.tmgPosition.getX(this.boardBounds, 0.50),
+			this.game.tmgPosition.getX(this.boardBounds, 0.75)
 		];
 		
-		for (var row = 0, item, itemAnimation; row < 4; row++) {
-			for (var collumn = 0; collumn < 4; collumn++) {
+		for (var row = 0, item, itemAnimation; row < SIZE; row++) {
+			for (var collumn = 0; collumn < SIZE; collumn++) {
 				item = this.board.create( squareX[collumn], squareY[row], 'square', 0);
 				item.inputEnabled = false;
 				item.id = squareId++;
@@ -209,19 +215,20 @@ TMG.states.gameplayState = function(){
 	}
 
 	state.generateSequence = function(increaseSequence){
-		var newValue = 16;
+		var newValue = NUM_SQUARES;
 
 		if (increaseSequence){
+			console.log('entrou');
 			this.sequence.push(-1);
 		}
 
 		for (var i = 0, length = this.sequence.length; i < length; i++) {
-			while(newValue > 15 || (i > 0 && newValue === this.sequence[i-1])){
-				newValue = Math.floor( Math.random() * 15 );
+			while(newValue > NUM_SQUARES-1 || (i > 0 && newValue === this.sequence[i-1])){
+				newValue = Math.floor( Math.random() * (NUM_SQUARES-1) );
 			}		
 			
 			this.sequence[i] = newValue;
-			newValue = 16;
+			newValue = NUM_SQUARES;
 		};
 
 	}
@@ -231,6 +238,8 @@ TMG.states.gameplayState = function(){
 			this.blockSquareAnimation = true;
 
 			if(this.actualShowIndex < this.sequence.length){
+				console.log(this.sequence);
+				console.log(this.actualShowIndex);
 				var square = this.board.children[ this.sequence[ this.actualShowIndex ] ],
 					currentAnim = square.animations.currentAnim;
 				if(!currentAnim.isPlaying)
@@ -273,7 +282,7 @@ TMG.states.gameplayState = function(){
 			this.playerTurnIndex = 0;
 			this.fontRound.text = 'ROUND ' + (this.round);
 			this.roundTweenIn.start();
-			this.generateSequence();
+			this.generateSequence(false);
 			this.blockSquareAnimation = false;
 			this.board.forEach(function(item){
 				item.inputEnabled = false;
