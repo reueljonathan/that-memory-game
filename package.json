@@ -1,0 +1,19 @@
+{
+  "name": "that-memory-game",
+  "version": "1.0.0",
+  "description": "Genius toy game but the pattern changes every round",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reueljonathan/that-memory-game.git"
+  },
+  "author": "Reuel Jonathan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reueljonathan/that-memory-game/issues"
+  },
+  "homepage": "https://github.com/reueljonathan/that-memory-game#readme"
+}
