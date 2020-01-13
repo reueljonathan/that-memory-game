@@ -17,8 +17,6 @@ TMG.states.gameOverState = function(){
 				// this.game.state.start('gameplay');
 			},
 			this, 1,0,2);
-		var twitterImage = this.game.add.image(this.game.world.centerX, this.game.world.height - 10, 'twitter-account');
-		twitterImage.anchor.set(0.5, 1);
 		btn.anchor.set(0.5);
 
 		this.fontMessage = this.add.bitmapText(

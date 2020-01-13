@@ -1,4 +1,3 @@
-
 TMG.states.bootState = function(){
 	var state = new Phaser.State();
 
@@ -6,7 +5,6 @@ TMG.states.bootState = function(){
 		this.load.image('loading-sprite',  'assets/loading-sprite.png');
 		this.load.image('transition-logo', 'assets/phaser1.png');
 		this.load.image('transition-back', 'assets/transition-background.png');
-		this.load.image('twitter-account', 'assets/twitter.png');
 
 		this.load.bitmapFont('font', 'assets/fonts/font.png', 'assets/fonts/font.fnt');
 		this.load.bitmapFont('font-green', 'assets/fonts/font-green.png', 'assets/fonts/font.fnt');
@@ -28,4 +26,3 @@ TMG.states.bootState = function(){
 
 	return state;
 }
-

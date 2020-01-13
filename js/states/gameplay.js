@@ -47,8 +47,6 @@ TMG.states.gameplayState = function(){
 	state.create = function(){
 		var squareId = 0;
 		var scale = 10;
-		var twitterImage = this.game.add.image(this.game.world.centerX, this.game.world.height - 10, 'twitter-account');
-		twitterImage.anchor.set(0.5, 1);
 		this.game.stage.backgroundColor = '#FFFFFF';
 		this.game.time.advancedTiming = true;
 		this.sequenceLength = 1;
